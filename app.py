@@ -9,9 +9,9 @@ import streamlit as st
 start = '2010-01-01'
 end = '2019-12-31'
 
-st.title('Stock Prediction System')
+# st.title('Stock Prediction System')
 
-user_input = st.text_input('Enter Stock Ticker', 'AAPL')
+user_input = st.text_input('Enter Stock Ticker', 'TCS.NS')
 df = data.DataReader(user_input, 'yahoo', start, end)
 
 #Describing Data
@@ -36,7 +36,7 @@ ma100 = df.Close.rolling(100).mean()
 ma200 = df.Close.rolling(200).mean()
 fig = plt.figure(figsize = (12,6))
 plt.plot(ma100, 'r')
-plt.plot(ma200, 'g')
+plt.plot(ma200, 'y')
 plt.plot(df.Close, 'b')
 st.pyplot(fig)
 
@@ -49,9 +49,6 @@ from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler(feature_range=(0,1))
 
 data_training_array = scaler.fit_transform(data_training)
-
-
-
 
 #Load my model
 model = load_model('keras_model.h5')
